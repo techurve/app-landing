@@ -5,7 +5,6 @@
     <Features :title="page?.features.title" :description="page?.features.description" :items="page?.features.items" />
     <Testimonials />
     <CTASection />
-    <CTAButton />
     <Pricing />
     <FAQ />
   </div>
