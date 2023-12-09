@@ -1,15 +1,8 @@
 <template>
-  <Header :links="links">
+  <Header :links="navigation">
     <template #logo>
       <span>{{ appConfig.app_name }}</span>
       <UBadge label="App" variant="subtle" class="mb-0.5" />
-    </template>
-
-    <template #right>
-      <UColorModeButton />
-
-      <UButton to="https://github.com/nuxt-ui-pro/starter" target="_blank" icon="i-simple-icons-github"
-        aria-label="GitHub" color="gray" variant="ghost" />
     </template>
   </Header>
 
@@ -17,24 +10,17 @@
     <NuxtPage />
   </main>
 
-  <Footer>
+  <Footer :links="navigation">
     <template #left>
-      Copyright © {{ new Date().getFullYear() }}
+      Copyright © {{ new Date().getFullYear() }} {{ appConfig.app_name }}
     </template>
   </Footer>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { type NavigationItem } from './types/navigation_item';
+
 const appConfig = useAppConfig();
-const links = [{
-  label: 'Features',
-  to: '#features',
-  exactHash: true
-}, {
-  label: 'Documentation',
-  to: 'https://ui.nuxt.com/pro',
-  target: '_blank'
-}]
 
 useHead({
   title: 'App Landing Page',
@@ -51,5 +37,12 @@ useHead({
 
 useSeoMeta({
   description: 'Mobile app landing page template. Start converting in minutes.'
-})
+});
+
+const navigation: Array<NavigationItem> = [
+  { name: "Features", path: "features" },
+  { name: "Testimonials", path: "testimonials" },
+  { name: "Pricing", path: "pricing" },
+  { name: "FAQ", path: "faq" }
+];
 </script>

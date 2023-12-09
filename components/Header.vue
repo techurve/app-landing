@@ -9,7 +9,7 @@
         </NuxtLink>
       </div>
       <ul class="items-center gap-x-8 hidden lg:flex">
-        <li v-for="nav in navigation">
+        <li v-for="nav in links">
           <NuxtLink :href="`/#${nav.path}`" class="text-sm/6 font-semibold flex items-center gap-1 transition-colors"
             :class="active(nav) ? 'text-primary' : 'hover:text-primary'">
             {{ nav.name }}
@@ -25,19 +25,10 @@
 </template>
 
 <script setup lang="ts">
-interface NavigationItem {
-  name: string,
-  path: string,
-}
+import { type NavigationItem } from '../types/navigation_item';
 
 const route = useRoute();
-
-const navigation: Array<NavigationItem> = [
-  { name: "Features", path: "features" },
-  { name: "Testimonials", path: "testimonials" },
-  { name: "Pricing", path: "pricing" },
-  { name: "FAQ", path: "faq" }
-];
+defineProps(['links']);
 
 const active = (nav: NavigationItem): boolean => route.hash === ('#' + nav.path);
 </script>

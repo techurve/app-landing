@@ -14,7 +14,8 @@
               <p class="mt-1 text-sm">Invest at the perfect time.</p>
             </div>
           </div>
-          <nav class="mt-11 flex gap-8"><a
+          <nav class="mt-11 flex gap-8">
+            <!-- <a
               class="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0"
               href="/#features"><span class="relative z-10">Features</span></a><a
               class="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0"
@@ -22,7 +23,11 @@
               class="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0"
               href="/#pricing"><span class="relative z-10">Pricing</span></a><a
               class="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0"
-              href="/#faqs"><span class="relative z-10">FAQs</span></a></nav>
+              href="/#faqs"><span class="relative z-10">FAQs</span></a> -->
+            <NuxtLink v-for="link in links" :to="`#${link.path}`">
+              {{ link.name }}
+            </NuxtLink>
+          </nav>
         </div>
         <div
           class="group relative -mx-4 flex items-center self-stretch p-4 transition-colors hover:bg-gray-100 sm:self-auto sm:rounded-2xl lg:mx-0 lg:self-auto lg:p-6">
@@ -45,7 +50,9 @@
 
       <div
         class="flex flex-col items-center border-t border-gray-200 pb-12 pt-8 md:flex-row-reverse md:justify-between md:pt-6">
+
         <form class="flex w-full justify-center md:w-auto">
+          join our newsletter
           <div class="w-60 min-w-0 shrink"><input id=":S5:" type="email" aria-label="Email address"
               placeholder="Email address" autocomplete="email" required=""
               class="block w-full appearance-none rounded-lg border border-gray-200 bg-white py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-gray-900 placeholder:text-gray-400 focus:border-cyan-500 focus:outline-none focus:ring-cyan-500 sm:text-sm">
@@ -54,6 +61,7 @@
             type="submit"><span class="hidden lg:inline">Join our newsletter</span><span class="lg:hidden">Join
               newsletter</span></button>
         </form>
+
         <p class="mt-6 text-sm text-gray-500 md:mt-0">
           <slot name="left"></slot>
         </p>
@@ -69,4 +77,6 @@
 import VueQrcode from 'vue-qrcode';
 
 const appConfig = useAppConfig();
+
+defineProps(['links']);
 </script>
